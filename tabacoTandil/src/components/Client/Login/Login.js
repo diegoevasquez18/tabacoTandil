@@ -47,7 +47,7 @@ export function Login() {
       </Form.Group>
       <Form.Checkbox label='I agree to the Terms and Conditions' />
       <Button type='submit'>Submit</Button>
-      <Button type='submit' onClick={handleGoogleSignin} >Google</Button>
+      <Button type='submit' onClick={handleGoogleSignin} to={'/products'}>Google</Button>
       <h2>NO TENES CUENTA? <NavLink to='/register'>REGISTRATE!</NavLink></h2>
     </Form>
   </Segment>
