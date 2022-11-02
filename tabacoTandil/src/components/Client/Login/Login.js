@@ -36,9 +36,8 @@ export function Login() {
     }
   };
   return (
-    <div className="textRegis">
-      <h3>INGRESA CON EMAIL O CON TU CUENTA DE GOOGLE</h3>
      <Segment inverted>
+      <h3>INGRESA CON EMAIL O CON TU CUENTA DE GOOGLE</h3>
      {error && <p>{error}</p>}
     <Form inverted onSubmit={handleSubmit}>
       <Form.Group widths='equal'>
@@ -46,11 +45,10 @@ export function Login() {
         <Form.Input fluid label='Last name' placeholder='Password' onChange={handleChange}/>
       </Form.Group>
       <Form.Checkbox label='I agree to the Terms and Conditions' />
-      <Button type='submit'>Submit</Button>
-      <Button type='submit' onClick={handleGoogleSignin} to={'/products'}>Google</Button>
+      <Button>Submit</Button>
+      <Button onClick={handleGoogleSignin} >Google</Button>
       <h2>NO TENES CUENTA? <NavLink to='/register'>REGISTRATE!</NavLink></h2>
     </Form>
   </Segment>
-    </div>
   );
 }

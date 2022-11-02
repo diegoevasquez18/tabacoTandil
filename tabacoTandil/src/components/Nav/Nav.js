@@ -6,8 +6,15 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 
 function OffcanvasExample() {
+
+  const { user, logout } = useAuth()
+  const handleLogout = async () => {
+    await logout();
+  };
+
   return (
     <>
       {[false].map((expand) => (
@@ -22,8 +29,12 @@ function OffcanvasExample() {
             >
               <Offcanvas.Header closeButton>
                 <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                 <Link to={'/login'} style={{textDecoration:'none', color: 'black'}}>Ingresar</Link>
-                </Offcanvas.Title>
+                  {!user ?
+                    <Link to={'/login'} style={{textDecoration:'none', color: 'black'}}>Ingresar</Link>
+                    :
+                    <Link to={'/'} style={{textDecoration:'none', color: 'black'}} onClick={handleLogout}>Salir</Link>
+                  }
+                 </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
