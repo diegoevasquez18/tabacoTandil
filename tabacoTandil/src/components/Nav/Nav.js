@@ -38,19 +38,21 @@ function OffcanvasExample() {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Nav.Link href="#action1">Novedades</Nav.Link>
-                  <Nav.Link><Link to='/products'>Productos</Link></Nav.Link>
+                  <Nav.Link><Link style={!user ? {display: 'none'} : {textDecoration:'none', color: 'black'}}>Perfil</Link></Nav.Link>
+                  <Nav.Link><Link to='/products' style={{textDecoration:'none', color: 'black'}}>Productos</Link></Nav.Link>
                   <NavDropdown
-                    title="Productos"
+                    title="Categoria"
                     id={`offcanvasNavbarDropdown-expand-${expand}`}
                   >
-                    <NavDropdown.Item href="#action3">Cigarrillos</NavDropdown.Item>
-                    <NavDropdown.Item href="#action4">
-                      Tabacos
+                    <NavDropdown.Item>
+                      <Link to={'category/cigarrillos'} style={{textDecoration:'none', color: 'black'}}>Cigarrillos</Link>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item>
+                    <Link to={'category/tabacos'} style={{textDecoration:'none', color: 'black'}}>Tabacos</Link>
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action5">
-                      Logout
+                    <NavDropdown.Item>
+                    <Link to={'category/papelillos'} style={{textDecoration:'none', color: 'black'}}>Papelillos</Link>
                     </NavDropdown.Item>
                   </NavDropdown>
                 </Nav>

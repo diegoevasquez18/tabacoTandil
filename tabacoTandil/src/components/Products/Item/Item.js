@@ -15,7 +15,7 @@ const Item = ({ id, img, name, description, price }) => {
     return (
     <div className="cards col-md-4">
       <Card className='card'>
-      <Card.Img variant="top" src={img} style={{ width: '100%'}} />
+      <Card.Img variant="top" src={img} style={{ width: '100%', objectFit: 'contain'}} />
       <Card.Body>
         <Card.Title>{name}</Card.Title>
         <p className='price'>$19.99</p>

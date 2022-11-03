@@ -12,6 +12,7 @@ function AppRouter() {
         <Routes>
           <Route exact path='/' element={<Home />}/>
           <Route exact path='/products' element={<ItemListContainer />}/>
+          <Route path="/category/:categoryId" element={<ItemListContainer />} />
         </Routes>
         <Routes>
           <Route exact path='/login' element={<Login />}/>
