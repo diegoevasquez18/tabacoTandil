@@ -18,7 +18,7 @@ const Item = ({ id, img, name, description, price }) => {
       <Card.Img variant="top" src={img} style={{ width: '100%', objectFit: 'contain'}} />
       <Card.Body>
         <Card.Title>{name}</Card.Title>
-        <p className='price'>$19.99</p>
+        <p className='price'>${price}</p>
         <Card.Text>
             {description}
         </Card.Text>

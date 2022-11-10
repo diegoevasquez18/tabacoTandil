@@ -7,6 +7,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import ProfileCard from '../Client/Profile/ProfileCard';
 
 function OffcanvasExample() {
 
@@ -14,45 +15,53 @@ function OffcanvasExample() {
   const handleLogout = async () => {
     await logout();
   };
+  
 
   return (
     <>
       {[false].map((expand) => (
         <Navbar key={expand} bg="light" expand={expand} className="mb-3">
           <Container fluid>
-            <Navbar.Brand><Link to={'/'} style={{textDecoration:'none', color: 'black'}}>Tandil Tabacos</Link></Navbar.Brand>
+            <Navbar.Brand as={Link} to="/"> Tandil Tabacos</Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
               aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
               placement="end"
             >
-              <Offcanvas.Header closeButton>
+              <Offcanvas.Header closeButton={true}>
                 <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
                   {!user ?
-                    <Link to={'/login'} style={{textDecoration:'none', color: 'black'}}>Ingresar</Link>
+                    <Nav.Link as={Link} to="/login">Ingresar</Nav.Link>
                     :
-                    <Link to={'/'} style={{textDecoration:'none', color: 'black'}} onClick={handleLogout}>Salir</Link>
+                    <Nav.Link as={Link} to="/" onClick={handleLogout}>Salir</Nav.Link>
                   }
                  </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Nav.Link><Link style={!user ? {display: 'none'} : {textDecoration:'none', color: 'black'}}>Perfil</Link></Nav.Link>
-                  <Nav.Link><Link to='/products' style={{textDecoration:'none', color: 'black'}}>Productos</Link></Nav.Link>
+                  {!user ?
+                    null
+                    :
+                    <div>
+                    <Nav.Link as={Link} to="/profile">Perfil</Nav.Link>
+                    <ProfileCard />
+                    </div>
+                  }
+                  <Nav.Link as={Link} to="/products">Productos</Nav.Link>
                   <NavDropdown
                     title="Categoria"
                     id={`offcanvasNavbarDropdown-expand-${expand}`}
                   >
                     <NavDropdown.Item>
-                      <Link to={'category/cigarrillos'} style={{textDecoration:'none', color: 'black'}}>Cigarrillos</Link>
+                      <Nav.Link as={Link} to="/category/cigarrillos">Cigarrillos</Nav.Link>
                     </NavDropdown.Item>
                     <NavDropdown.Item>
-                    <Link to={'category/tabacos'} style={{textDecoration:'none', color: 'black'}}>Tabacos</Link>
+                      <Nav.Link as={Link} to="/category/tabacos">Tabacos</Nav.Link>
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item>
-                    <Link to={'category/papelillos'} style={{textDecoration:'none', color: 'black'}}>Papelillos</Link>
+                      <Nav.Link as={Link} to="/category/papelillos">Papelillos</Nav.Link>
                     </NavDropdown.Item>
                   </NavDropdown>
                 </Nav>

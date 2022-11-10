@@ -1,8 +1,15 @@
 import React, { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import { Button, Form, Segment } from 'semantic-ui-react'
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import {
+  Button,
+  Form,
+  Grid,
+  Header,
+  Message,
+  Segment,
+} from "semantic-ui-react";
 import { useAuth } from "../../../context/AuthContext";
-
 
 export function Login() {
   const { login, loginWithGoogle } = useAuth();
@@ -36,19 +43,48 @@ export function Login() {
     }
   };
   return (
-     <Segment inverted>
-      <h3>INGRESA CON EMAIL O CON TU CUENTA DE GOOGLE</h3>
-     {error && <p>{error}</p>}
-    <Form inverted onSubmit={handleSubmit}>
-      <Form.Group widths='equal'>
-        <Form.Input fluid label='First name' placeholder='E-mail'  onChange={handleChange}/>
-        <Form.Input fluid label='Last name' placeholder='Password' onChange={handleChange}/>
-      </Form.Group>
-      <Form.Checkbox label='I agree to the Terms and Conditions' />
-      <Button>Submit</Button>
-      <Button onClick={handleGoogleSignin} >Google</Button>
-      <h2>NO TENES CUENTA? <NavLink to='/register'>REGISTRATE!</NavLink></h2>
-    </Form>
-  </Segment>
+    <Grid textAlign="center" style={{ height: "60vh" }} verticalAlign="middle">
+      <Grid.Column style={{ maxWidth: 450 }}>
+        <Header as="h2" color="teal" textAlign="center">
+          <h3>INGRESA CON EMAIL O CON TU CUENTA DE GOOGLE</h3>
+          {error && <p>{error}</p>}
+        </Header>
+        <Form size="large" onSubmit={handleSubmit}>
+          <Segment stacked>
+            <Form.Input
+              fluid
+              icon="user"
+              iconPosition="left"
+              placeholder="E-mail address"
+              onChange={handleChange}
+            />
+            <Form.Input
+              fluid
+              icon="lock"
+              iconPosition="left"
+              placeholder="Password"
+              type="password"
+              onChange={handleChange}
+            />
+
+            <Button color="teal" fluid size="large">
+              Login
+            </Button>
+            <br></br>
+            <Button
+              color="teal"
+              fluid
+              size="large"
+              onClick={handleGoogleSignin}
+            >
+              Google
+            </Button>
+          </Segment>
+        </Form>
+        <Message>
+          Sos nuevo? <Link to={"/register"}>Registrare!</Link>
+        </Message>
+      </Grid.Column>
+    </Grid>
   );
 }

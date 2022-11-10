@@ -1,5 +1,7 @@
 import {Routes, Route } from 'react-router-dom';
 import { Login } from '../components/Client/Login/Login';
+import Profile  from '../components/Client/Profile/Profile.js';
+import Register from '../components/Client/Register/Register';
 
 
 import Home from '../components/Home/Home';
@@ -16,6 +18,8 @@ function AppRouter() {
         </Routes>
         <Routes>
           <Route exact path='/login' element={<Login />}/>
+          <Route exact path='/register' element={<Register />}/>
+          <Route exact path='/profile' element={<Profile />}/>
         </Routes>
     </div>
   );
